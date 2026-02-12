@@ -43,7 +43,8 @@ echo -e "${GREEN}✓${NC} İşletim Sistemi: Ubuntu $DISTRIB_RELEASE"
 echo ""
 echo -e "${GREEN}[2/5]${NC} Sistem paketleri ve Python gereksinimleri kuruluyor..."
 sudo apt update -qq
-sudo apt install -y python3 python3-pip python3-venv libgl1-mesa-glx > /dev/null 2>&1
+echo "Paketler yükleniyor (detaylar görünecek)..."
+sudo apt install -y python3 python3-pip python3-venv libgl1-mesa-glx
 echo -e "${GREEN}✓${NC} Python3 ve gerekli kütüphaneler kuruldu"
 
 # Sanal ortam oluşturma
