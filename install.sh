@@ -41,11 +41,25 @@ echo -e "${GREEN}✓${NC} İşletim Sistemi: Ubuntu $DISTRIB_RELEASE"
 
 # Paket güncelleme ve Python gereksinimleri
 echo ""
-echo -e "${GREEN}[2/5]${NC} Sistem paketleri ve Python gereksinimleri kuruluyor..."
-sudo apt update -qq
-echo "Paketler yükleniyor (detaylar görünecek)..."
-sudo apt install -y python3 python3-pip python3-venv libgl1
-echo -e "${GREEN}✓${NC} Python3 ve gerekli kütüphaneler kuruldu"
+echo -e "${GREEN}[2/5]${NC} Sistem paketleri ve Python gereksinimleri kontrol ediliyor..."
+
+REQUIRED_PKGS="python3 python3-pip python3-venv libgl1"
+MISSING_PKGS=""
+
+for pkg in $REQUIRED_PKGS; do
+    if dpkg -s "$pkg" &> /dev/null; then
+        echo -e "${GREEN}✓${NC} $pkg zaten yüklü"
+    else
+        MISSING_PKGS="$MISSING_PKGS $pkg"
+    fi
+done
+
+if [ -n "$MISSING_PKGS" ]; then
+    echo -e "${YELLOW}→${NC} Eksik paketler yükleniyor:$MISSING_PKGS"
+    sudo apt update -qq
+    sudo apt install -y $MISSING_PKGS
+fi
+echo -e "${GREEN}✓${NC} Tüm sistem paketleri hazır"
 
 # Sanal ortam oluşturma
 echo ""
