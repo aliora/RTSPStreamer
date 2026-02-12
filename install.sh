@@ -96,7 +96,7 @@ mkdir -p public
 echo -e "${GREEN}✓${NC} Dizinler oluşturuldu"
 
 # Port kontrolü
-PORT=3000
+PORT=3333
 if lsof -Pi :$PORT -sTCP:LISTEN -t >/dev/null 2>&1 ; then
     echo ""
     echo -e "${YELLOW}⚠ Port $PORT kullanımda!${NC}"
@@ -115,7 +115,7 @@ echo -e "${GREEN}🚀 Başlatmak için:${NC}"
 echo -e "   ${YELLOW}./start.sh${NC}"
 echo ""
 echo -e "${GREEN}🌐 Ardından tarayıcınızda:${NC}"
-echo -e "   ${YELLOW}http://localhost:3000${NC}"
+echo -e "   ${YELLOW}http://localhost:3333${NC}"
 echo ""
 echo -e "${GREEN}📝 Servis olarak çalıştırmak için:${NC}"
 echo -e "   ${YELLOW}sudo ./service-install.sh${NC}"
