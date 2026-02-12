@@ -14,7 +14,7 @@ Kurulum tamamlandıktan sonra:
 ./start.sh
 ```
 
-Tarayıcıda aç: **http://localhost:3000**
+Tarayıcıda aç: **http://localhost:3333**
 
 ## 🎯 Özellikler
 
