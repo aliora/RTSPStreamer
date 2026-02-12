@@ -307,7 +307,11 @@
         }
 
         function openModal() {
-            document.getElementById('modal').classList.add('active');
+            console.log('openModal called');
+            const modal = document.getElementById('modal');
+            console.log('Modal element:', modal);
+            modal.classList.add('active');
+            console.log('Modal classes:', modal.className);
         }
 
         function closeModal() {
