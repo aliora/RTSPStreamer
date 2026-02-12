@@ -1,4 +1,7 @@
-*.log
+venv/
+__pycache__/
+*.pyc
 .DS_Store
-node_modules/
+.env
 streams/
+node_modules/
