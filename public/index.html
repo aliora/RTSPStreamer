@@ -179,6 +179,12 @@
             border: none;
             border-radius: 6px;
             cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
 
         .btn-primary {
@@ -232,7 +238,7 @@
                 </div>
                 <div class="modal-buttons">
                     <button type="button" class="btn btn-secondary" onclick="closeModal()">İptal</button>
-                    <button type="submit" class="btn btn-primary">Ekle</button>
+                    <button type="submit" id="submit-btn" class="btn btn-primary">Ekle</button>
                 </div>
             </form>
         </div>
@@ -277,6 +283,13 @@
         }
 
         async function addStream(name, rtspUrl) {
+            const submitBtn = document.getElementById('submit-btn');
+            const originalText = submitBtn.textContent;
+
+            // Butonu devre dışı bırak ve loading göster
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Ekleniyor...';
+
             try {
                 const response = await fetch(API_URL, {
                     method: 'POST',
@@ -290,9 +303,14 @@
                     return;
                 }
 
-                loadStreams();
+                await loadStreams();
             } catch (error) {
                 console.error('Ekleme hatası:', error);
+                alert('Bağlantı hatası');
+            } finally {
+                // Butonu tekrar aktif et
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
             }
         }
 
@@ -307,11 +325,7 @@
         }
 
         function openModal() {
-            console.log('openModal called');
-            const modal = document.getElementById('modal');
-            console.log('Modal element:', modal);
-            modal.classList.add('active');
-            console.log('Modal classes:', modal.className);
+            document.getElementById('modal').classList.add('active');
         }
 
         function closeModal() {
