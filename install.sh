@@ -80,20 +80,26 @@ echo -e "${GREEN}✓${NC} npm kurulu (Versiyon: $NPM_VERSION)"
 
 # Node modülleri kurulumu
 echo ""
-echo -e "${GREEN}[5/6]${NC} Node.js bağımlılıkları kuruluyor..."
-if [ ! -d "node_modules" ]; then
-    npm install --silent
-    echo -e "${GREEN}✓${NC} Bağımlılıklar kuruldu"
-else
-    echo -e "${GREEN}✓${NC} Bağımlılıklar zaten kurulu"
-fi
+echo -e "${GREEN}[5/7]${NC} Node.js bağımlılıkları kuruluyor..."
+npm install --silent
+echo -e "${GREEN}✓${NC} Bağımlılıklar kuruldu"
 
 # Dizin yapısını oluştur
 echo ""
-echo -e "${GREEN}[6/6]${NC} Proje yapısı oluşturuluyor..."
+echo -e "${GREEN}[6/7]${NC} Proje yapısı oluşturuluyor..."
 mkdir -p streams
 mkdir -p public
 echo -e "${GREEN}✓${NC} Dizinler oluşturuldu"
+
+# hls.js'yi local olarak kopyala (CDN bağımlılığını kaldır)
+echo ""
+echo -e "${GREEN}[7/7]${NC} hls.js kopyalanıyor..."
+if [ -f "node_modules/hls.js/dist/hls.min.js" ]; then
+    cp node_modules/hls.js/dist/hls.min.js public/hls.min.js
+    echo -e "${GREEN}✓${NC} hls.js public klasörüne kopyalandı (VPN/offline erişim için)"
+else
+    echo -e "${RED}❌ hls.js bulunamadı! npm install başarısız olmuş olabilir.${NC}"
+fi
 
 # Port kontrolü
 PORT=3333
