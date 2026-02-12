@@ -15,12 +15,15 @@ if [ ! -d "node_modules" ]; then
     echo ""
 fi
 
-# Streams dizinini oluştur
+# Streams dizinini oluştur ve izinleri ayarla
 mkdir -p streams
+if [ -d "streams" ]; then
+    chmod 777 streams
+fi
 
 # Sunucuyu başlat
 echo -e "${GREEN}✅ Sunucu başlatılıyor...${NC}"
-echo -e "${GREEN}🌐 Tarayıcınızda http://localhost:3000 adresini açın${NC}"
+echo -e "${GREEN}🌐 Tarayıcınızda http://localhost:3333 adresini açın${NC}"
 echo ""
 echo "Durdurmak için CTRL+C tuşlarına basın"
 echo ""

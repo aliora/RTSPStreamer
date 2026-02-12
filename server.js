@@ -2,14 +2,16 @@ const express = require('express');
 const { spawn } = require('child_process');
 const fs = require('fs');
 const path = require('path');
+const cors = require('cors');
 
 const app = express();
-const PORT = 3000;
+const PORT = 3333;
 
 // Aktif akışları takip et
 const activeStreams = new Map();
 const streamConfigs = [];
 
+app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 app.use('/streams', express.static('streams'));
@@ -17,7 +19,7 @@ app.use('/streams', express.static('streams'));
 // RTSP akışı ekle
 app.post('/api/streams', (req, res) => {
     const { rtspUrl, name } = req.body;
-    
+
     if (!rtspUrl) {
         return res.status(400).json({ error: 'RTSP URL gerekli' });
     }
@@ -130,6 +132,6 @@ process.on('SIGINT', () => {
     process.exit(0);
 });
 
-app.listen(PORT, () => {
-    console.log(`RTSP Web Viewer sunucusu http://localhost:${PORT} adresinde çalışıyor`);
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`RTSP Web Viewer sunucusu http://0.0.0.0:${PORT} adresinde çalışıyor`);
 });

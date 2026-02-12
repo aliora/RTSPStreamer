@@ -75,7 +75,7 @@ if systemctl is-active --quiet ${SERVICE_NAME}.service; then
     echo -e "  ${YELLOW}sudo systemctl restart ${SERVICE_NAME}${NC}  - Yeniden başlat"
     echo -e "  ${YELLOW}sudo journalctl -u ${SERVICE_NAME} -f${NC}  - Logları izle"
     echo ""
-    echo -e "${GREEN}🌐 Tarayıcıda:${NC} ${YELLOW}http://localhost:3000${NC}"
+    echo -e "${GREEN}🌐 Tarayıcıda:${NC} ${YELLOW}http://localhost:3333${NC}"
     echo ""
 else
     echo ""
