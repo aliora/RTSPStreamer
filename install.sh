@@ -44,7 +44,7 @@ echo ""
 echo -e "${GREEN}[2/5]${NC} Sistem paketleri ve Python gereksinimleri kuruluyor..."
 sudo apt update -qq
 echo "Paketler yükleniyor (detaylar görünecek)..."
-sudo apt install -y python3 python3-pip python3-venv libgl1 libglib2.0-0
+sudo apt install -y python3 python3-pip python3-venv libgl1
 echo -e "${GREEN}✓${NC} Python3 ve gerekli kütüphaneler kuruldu"
 
 # Sanal ortam oluşturma
